@@ -21,10 +21,12 @@ export default function Get() {
     }
     setData(res.data);
   };
-
   useEffect(() => {
     getData();
-  }, []);
+  },
+  // eslint-disable-next-line
+  []);
+
   return (
     <div>
       <form className="get-submit grid grid-cols-1 lg:grid-cols-3 gap-4 w-full max-w-4xl mx-auto">
@@ -58,11 +60,14 @@ export default function Get() {
           </Button>
         </div>
       </form>
-      <ul  className=" mt-4 pr-4 pl-4 space-y-2">
-        {allData ?
+      <ul className=" mt-4 pr-4 pl-4 space-y-2">
+        {allData ? (
           allData.map((item) => {
             return <DataItem key={item.id} data={item} />;
-          }): <div>Loading...</div>}
+          })
+        ) : (
+          <div>Loading...</div>
+        )}
       </ul>
     </div>
   );
